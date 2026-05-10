@@ -20,6 +20,14 @@ class Tree:
         if self.right:
             self.right.preorder_traversal()
 
+    def postorder_traversal(self):
+        if self.left:
+            self.left.postorder_traversal()
+
+        if self.right:
+            self.right.postorder_traversal()
+
+        print(self.value)
 
 root=Tree(5)
 root.left=Tree(4)
@@ -31,3 +39,5 @@ root.left.right=Tree(2)
 print(f"Inorder Traversal: {root.inorder_traversal()}")
 
 print(f"Preorder Traversal: {root.preorder_traversal()}")
+
+print(f"Postorder Traversal: {root.postorder_traversal()}")
