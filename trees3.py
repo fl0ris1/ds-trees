@@ -30,6 +30,34 @@ class Tree:
                 current=current.left
             return current
         
+    def delete(root,key):
+        if root == None:
+            return root
+        
+        if key<root.value:
+            root.left=Tree.delete(root.left,key)
+        
+        elif key>root.value:
+            root.right=Tree.delete(root.right,key)
+            
+        else:
+            if root.left==None:
+                temp=root.right
+                root=None
+                return temp
+                
+            elif root.right==None:
+                temp=root.left
+                root=None
+                return temp
+            
+            temp=root.inorder_successor()
+            root.value=temp.value
+            
+            root.right=Tree.delete(root.right,temp.value)
+        
+        return root,key
+                        
 
 root=Tree(10)
 root.left=Tree(15)
@@ -40,4 +68,8 @@ root.left.right=Tree(25)
 root.inorder_traversal()
 successor=root.inorder_successor().value
 print(f"successor: {successor}")
+
+print("Deleting 10")
+Tree.delete(root,10)
+root.inorder_traversal()
             
